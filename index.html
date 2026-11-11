@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ملف القضية السرية | محققات الأخطاء البرمجية</title>
+<style>
+:root{--navy:#141b39;--purple:#7058d8;--pink:#ed8bc4;--mint:#43c9ac;--white:#fff;--muted:#aeb8d5}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at top right,#343064,#10162d 65%);color:#f6f5ff;min-height:100vh}
+header{text-align:center;padding:35px 16px 16px}.tag{display:inline-block;border:1px solid #7466ac;border-radius:40px;padding:8px 18px;color:#e6c8ff;font-size:13px}
+h1{font-size:clamp(28px,5vw,46px);margin:16px 0 8px}header p{color:#c4c8e2;margin:0}
+main{max-width:940px;margin:22px auto 60px;padding:0 16px}.panel{background:#222948e8;border:1px solid #475078;border-radius:22px;padding:25px;box-shadow:0 18px 40px #070b204d}
+.hero{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}.hero .art{font-size:74px}.hero div{max-width:530px}
+h2{font-size:23px;margin:0 0 16px}.desc{line-height:2;color:#d9def4}.steps{display:flex;gap:8px;margin:22px 0}.steps span{flex:1;height:7px;border-radius:9px;background:#465073}.steps .on{background:linear-gradient(90deg,var(--pink),var(--purple))}
+button{cursor:pointer;border:0;border-radius:13px;padding:13px 22px;font-weight:bold;font-size:16px;font-family:inherit;background:linear-gradient(115deg,#b576f2,#e38bcb);color:#191532;transition:.2s}button:hover{transform:translateY(-2px);filter:brightness(1.08)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.secondary{background:#3c476b;color:#fff}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow:auto;background:#0d1428;color:#b6f3dd;padding:20px;border-radius:13px;font-size:16px;line-height:1.8;border:1px solid #33405f}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}.option{background:#303a5e;color:white;border:1px solid #57638c}.option.chosen{background:#795baf;border-color:#e7b5ff}.option.good{background:#235b53;border-color:#66d6b2}.option.bad{background:#663b57;border-color:#f4a2c4}
+.feedback{background:#29385a;border-right:4px solid var(--mint);padding:15px;border-radius:12px;margin-top:18px;line-height:1.9}
+label{display:block;margin:15px 0 8px;font-weight:bold}textarea,input{width:100%;background:#141c37;border:1px solid #58648b;color:white;border-radius:12px;padding:13px;font:inherit;outline:none}textarea:focus,input:focus{border-color:#df9fe8}textarea{min-height:100px;resize:vertical}
+.evidence{background:#18223e;border:1px solid #465475;padding:14px;border-radius:13px;margin:12px 0;line-height:1.9;white-space:pre-wrap}.score{font-size:55px;color:#9ff0ce;font-weight:bold;text-align:center}.hidden{display:none!important}.footer{text-align:center;color:#9ca6c6;font-size:12px;margin-top:22px}.small{font-size:13px;color:#b6bfda}
+@media(max-width:600px){.panel{padding:18px}.hero .art{font-size:50px}}
+
+/* الهوية الجديدة: مختبر تحقيق غامض */
+:root{--navy:#0b1228;--purple:#a18bff;--pink:#f5a8d9;--mint:#6ce4c5}
+body{background:radial-gradient(ellipse at 15% 8%,#3b285e 0%,transparent 40%),radial-gradient(ellipse at 90% 35%,#163d53 0%,transparent 38%),linear-gradient(145deg,#080e21,#151b38 70%,#100e24);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.19;background-image:radial-gradient(#c9b9ff 1px,transparent 1px);background-size:28px 28px}
+header{position:relative;padding:40px 18px 23px}header h1{letter-spacing:.3px;text-shadow:0 0 24px #a782ff80}header p{line-height:1.9}
+.tag{background:#a58cf013;letter-spacing:.2px;box-shadow:inset 0 0 12px #bba7ff16}
+.panel{background:linear-gradient(145deg,#222948f5,#191d39f5);border:1px solid #786caa75;box-shadow:0 20px 60px #0507169c, inset 0 1px #ffffff14;backdrop-filter:blur(10px)}
+.panel h2{color:#f6d6ff}.steps span{height:9px;background:#3c4266}.steps .on{background:linear-gradient(90deg,#72dec6,#ad89ff,#f3a2d4);box-shadow:0 0 14px #a589ff8a}
+button{box-shadow:0 6px 16px #080c2580}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #7debd3;outline-offset:3px}
+pre{border-right:4px solid #6adac3;box-shadow:inset 0 0 28px #0003}.evidence{border-right:3px solid #a88df4}
+.mystery-art{width:min(240px,55vw);height:220px;position:relative;display:grid;place-items:center;filter:drop-shadow(0 10px 22px #060a1d)}
+.mystery-art svg{width:100%;height:100%;overflow:visible;animation:detective-search 4.5s ease-in-out infinite;transform-origin:50% 55%}
+.mystery-art .lens-glow{animation:lens-pulse 2.2s ease-in-out infinite}
+.mystery-art .sparkle{animation:twinkle 2s ease-in-out infinite}.mystery-art .sparkle.two{animation-delay:1s}
+@keyframes detective-search{0%,100%{transform:translate(-10px,0) rotate(-12deg)}50%{transform:translate(12px,-10px) rotate(12deg)}}
+@keyframes lens-pulse{0%,100%{opacity:.22}50%{opacity:.85}}@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+.mystery-label{color:#a9f3df;font-size:12px;font-weight:bold;letter-spacing:2px;text-align:center;margin-top:-15px}
+.hero{gap:30px}.hero>div:last-child{flex:1;min-width:250px}.case-stamp{display:inline-block;padding:5px 12px;border:1px dashed #bca4ff;border-radius:8px;color:#d9c5ff;transform:rotate(-3deg);margin-bottom:10px}
+.small{line-height:1.9}a{color:#aef1df}
+@media(max-width:600px){header{padding-top:22px}.mystery-art{height:155px;width:170px}.hero{gap:5px}.actions button{flex:1 1 180px}}
+@media(prefers-reduced-motion:reduce){.mystery-art svg,.mystery-art .lens-glow,.mystery-art .sparkle{animation:none}}
+</style></head>
+<body>
+<header><div class="tag">🎓 طالبات التكنولوجيا | اختبار البرمجيات</div><h1>🕵🏻‍♀️ محققات الأخطاء البرمجية</h1><p>مغامرة تفاعلية لاكتشاف الأخطاء اللغوية والمنطقية وأخطاء وقت التشغيل</p></header>
+<main><div class="panel" style="margin-bottom:16px;background:#29254e"><label for="topStudent" style="margin-top:0">👩🏻‍🎓 اسم الطالبة المحققة</label><input id="topStudent" placeholder="اكتبي اسم الطالبة هنا قبل بدء التحقيق" oninput="name=this.value" autocomplete="off"><p class="small">سيظهر هذا الاسم في تقرير الأدلة والشهادة النهائية.</p></div><div class="steps" id="progress"></div><section class="panel" id="app"></section><div class="footer">مختبر الأدلة الرقمية • تعلّمي، حلّلي، صحّحي، ووثّقي اكتشافكِ ✨</div></main>
+<script>
+const cases=[
+{title:"البرنامج الذي رفض البدء",incident:"أبلغت طالبة أن البرنامج لا يبدأ التنفيذ. افحصي الشيفرة واكتشفي السبب.",code:'student_name = "Sara"\nprint("Welcome", student_name',type:0,explanation:"يوجد قوس إغلاق مفقود في تعليمة print؛ لذلك يظهر خطأ في بناء الجملة (SyntaxError) قبل تشغيل البرنامج.",fixed:'student_name = "Sara"\nprint("Welcome", student_name)'},
+{title:"النتيجة الغامضة",incident:"البرنامج يعمل، لكن متوسط الدرجات يظهر 125 بدلًا من 85. ما نوع الخطأ؟",code:'mark1 = 80\nmark2 = 90\naverage = mark1 + mark2 / 2\nprint(average)',type:1,explanation:"هذا خطأ منطقي؛ فالبرنامج ينفذ القسمة قبل الجمع. نحتاج إلى أقواس حول مجموع الدرجتين.",fixed:'mark1 = 80\nmark2 = 90\naverage = (mark1 + mark2) / 2\nprint(average)'},
+{title:"التوقف المفاجئ",incident:"بدأ البرنامج التنفيذ، لكنه توقف عند حساب المتوسط وظهرت رسالة ZeroDivisionError.",code:'total = 100\nstudents = 0\naverage = total / students\nprint(average)',type:2,explanation:"هذا خطأ وقت تشغيل؛ لأن البرنامج يحاول القسمة على صفر أثناء التنفيذ.",fixed:'total = 100\nstudents = 0\nif students != 0:\n    average = total / students\n    print(average)\nelse:\n    print("لا يمكن القسمة على صفر")'}
+];
+const types=["خطأ لغوي (Syntax Error)","خطأ منطقي (Logical Error)","خطأ وقت التشغيل (Runtime Error)"];
+let stage=-1,chosen=[null,null,null],notes=["","",""],name="",reflection="";
+const app=document.getElementById("app"),progress=document.getElementById("progress");
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){progress.innerHTML=[0,1,2].map(i=>`<span class="${stage>=i?'on':''}"></span>`).join("");
+if(stage===-1){app.innerHTML=`<div class="hero"><div><div class="mystery-art" role="img" aria-label="عدسة مكبرة متحركة تبحث عن الأدلة"><svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="glass"><stop stop-color="#b8fff2" stop-opacity=".43"/><stop offset="1" stop-color="#83a8ff" stop-opacity=".09"/></radialGradient><linearGradient id="handle" x2="1" y2="1"><stop stop-color="#e5baff"/><stop offset="1" stop-color="#7559c4"/></linearGradient></defs><circle class="lens-glow" cx="102" cy="89" r="77" fill="#9b89ff" opacity=".25"/><rect x="151" y="135" width="27" height="94" rx="13" fill="url(#handle)" stroke="#f7d5ff" stroke-width="4" transform="rotate(-43 164 160)"/><circle cx="102" cy="88" r="66" fill="#101b35" stroke="#d9c4ff" stroke-width="12"/><circle cx="102" cy="88" r="57" fill="url(#glass)" stroke="#7ee8d3" stroke-width="3"/><path d="M68 64q23-25 50-18" fill="none" stroke="white" stroke-opacity=".7" stroke-width="7" stroke-linecap="round"/><text x="100" y="105" font-size="50" text-anchor="middle" fill="#b7fbe9" font-family="monospace">?</text><g class="sparkle"><path d="M190 20v26m-13-13h26" stroke="#f6b6db" stroke-width="5" stroke-linecap="round"/></g><g class="sparkle two"><path d="M27 149v20m-10-10h20" stroke="#80e8d2" stroke-width="4" stroke-linecap="round"/></g></svg></div><div class="mystery-label">SEARCHING FOR CLUES...</div></div><div><span class="case-stamp">سري للغاية • CASE 001</span><h2>🚨 بلاغ عاجل من مختبر البرمجيات!</h2><p class="desc">ثلاث قضايا برمجية تنتظر تحقيقكِ. مهمتكِ هي فحص كل شيفرة، وتحديد نوع الخطأ، وتوثيق دليل يثبت اكتشافكِ. في النهاية ستحصلين على <b>تقرير المحققة</b> لإرساله إلى المعلمة.</p></div></div><div class="actions"><button onclick="start()">🚀 ابدئي المهمة السرية</button></div>`;return}
+if(stage<3){let c=cases[stage],a=chosen[stage];app.innerHTML=`<div class="tag">📁 القضية ${stage+1} من 3</div><h2 style="margin-top:15px">${c.title}</h2><p class="desc">${c.incident}</p><label>💻 الشيفرة البرمجية تحت التحقيق</label><pre>${esc(c.code)}</pre><h3>🔍 ما نوع الخطأ؟</h3><div class="options">${types.map((t,i)=>`<button class="option ${a===i?(i===c.type?'good':'bad'):''}" ${a!==null?'disabled':''} onclick="choose(${i})">${t}</button>`).join("")}</div>${a!==null?`<div class="feedback"><b>${a===c.type?'🏆 اكتشاف صحيح!':'🔬 راجعي نتيجة التحقيق'}</b><div>${c.explanation}</div><b>🛠️ الشيفرة المصححة:</b><pre>${esc(c.fixed)}</pre></div><label for="note">📝 دليل التعلم: اكتبي لماذا حدث الخطأ وكيف عرفتِ نوعه</label><textarea id="note" placeholder="اكتبي ملاحظتكِ الخاصة...">${esc(notes[stage])}</textarea><div class="actions"><button onclick="next()">${stage===2?'📋 عرض التقرير النهائي':'القضية التالية ←'}</button></div>`:''}`;return}
+const score=chosen.filter((a,i)=>a===cases[i].type).length;
+app.innerHTML=`<div style="text-align:center;font-size:55px">🏆</div><h2 style="text-align:center">تقرير المحققة البرمجية</h2><div class="score">${score} / 3</div><p style="text-align:center" class="desc">إجابات صحيحة من المحاولة الأولى</p><div class="evidence"><b>👩🏻‍🎓 اسم المحققة:</b> ${esc(name)}</div><h3>📂 ملف الأدلة التي جمعتِها</h3>${cases.map((c,i)=>`<div class="evidence"><b>${i+1}. ${c.title}</b><br>التصنيف الصحيح: ${types[c.type]}<br>إجابتكِ: ${types[chosen[i]]}<br>دليلكِ: ${esc(notes[i])}</div>`).join("")}<label for="reflect">💡 سؤال التفكير الناقد: هل يمكن أن يعمل البرنامج دون رسائل خطأ، ومع ذلك تكون نتائجه غير صحيحة؟ أثبتي رأيكِ بدليل.</label><textarea id="reflect" oninput="reflection=this.value" placeholder="اكتبي استنتاجكِ ودليلكِ...">${esc(reflection)}</textarea><div class="actions"><button onclick="download()">📥 تنزيل تقرير الأدلة</button><button class="secondary" onclick="copyReport()">📋 نسخ التقرير</button><button class="secondary" onclick="certificate()">🏅 حفظ الشهادة PDF</button><button class="secondary" onclick="emailTeacher()">✉️ تجهيز رسالة للمعلمة</button><button class="secondary" onclick="newStudent()">👩🏻‍🎓 طالبة جديدة</button></div><p class="small" id="msg">لحفظ الشهادة: اضغطي «حفظ الشهادة PDF» ثم اختاري «حفظ كملف PDF» من نافذة الطباعة. بعدها اضغطي «تجهيز رسالة للمعلمة» وأرفقي ملف PDF يدويًا قبل الإرسال. لا يتم إرسال أي شيء تلقائيًا.</p>`}
+function start(){name=document.getElementById("topStudent").value.trim();if(!name){alert("يرجى إدخال اسم الطالبة في أعلى الصفحة أولًا.");document.getElementById("topStudent").focus();return}stage=0;render()}function choose(i){if(chosen[stage]!==null)return;chosen[stage]=i;render()}
+function next(){let v=document.getElementById("note").value.trim();if(!v){alert("اكتبي دليلًا من ملاحظاتكِ قبل الانتقال.");return}notes[stage]=v;stage++;render()}
+function report(){name=document.getElementById("topStudent")?.value.trim()||name;reflection=document.getElementById("reflect")?.value.trim()||reflection;if(!name||!reflection){alert("يرجى كتابة اسم الطالبة وإجابة السؤال الختامي أولًا.");return null}let score=chosen.filter((a,i)=>a===cases[i].type).length;return `تقرير محققات الأخطاء البرمجية\nاسم الطالبة: ${name}\nالنتيجة: ${score}/3\n\n`+cases.map((c,i)=>`${c.title}\nإجابتي: ${types[chosen[i]]}\nالتصنيف الصحيح: ${types[c.type]}\nدليلي: ${notes[i]}`).join("\n\n")+`\n\nسؤال التفكير الناقد:\n${reflection}`}
+function download(){let txt=report();if(!txt)return;let blob=new Blob(["\ufeff"+txt],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="تقرير-محققة-الأخطاء.txt";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+async function copyReport(){let txt=report();if(!txt)return;try{await navigator.clipboard.writeText(txt);document.getElementById("msg").textContent="✅ تم نسخ التقرير بنجاح"}catch(e){document.getElementById("msg").textContent="تعذّر النسخ التلقائي؛ استخدمي زر تنزيل التقرير."}}
+function certificate(){
+let txt=report();if(!txt)return;
+const score=chosen.filter((a,i)=>a===cases[i].type).length;
+const safe=esc(name), date=new Date().toLocaleDateString("ar-QA");
+const doc=`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>شهادة ${safe}</title><style>
+@page{size:A4 landscape;margin:12mm}body{font-family:Tahoma,Arial,sans-serif;background:#f3edff;margin:0;display:grid;place-items:center;min-height:100vh}
+.cert{background:white;border:12px double #8062bd;padding:55px 35px;text-align:center;width:85%;max-width:900px;box-shadow:0 10px 35px #aaa;box-sizing:border-box}
+h1{color:#6244a1;font-size:43px}h2{color:#a05b9f;font-size:35px}.gold{font-size:65px}p{font-size:22px;line-height:1.8}.foot{display:flex;justify-content:space-between;margin-top:50px;color:#604c84;font-size:17px}
+@media print{body{background:white}.cert{width:100%;max-width:none;box-shadow:none;min-height:175mm}}
+
+/* الهوية الجديدة: مختبر تحقيق غامض */
+:root{--navy:#0b1228;--purple:#a18bff;--pink:#f5a8d9;--mint:#6ce4c5}
+body{background:radial-gradient(ellipse at 15% 8%,#3b285e 0%,transparent 40%),radial-gradient(ellipse at 90% 35%,#163d53 0%,transparent 38%),linear-gradient(145deg,#080e21,#151b38 70%,#100e24);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.19;background-image:radial-gradient(#c9b9ff 1px,transparent 1px);background-size:28px 28px}
+header{position:relative;padding:40px 18px 23px}header h1{letter-spacing:.3px;text-shadow:0 0 24px #a782ff80}header p{line-height:1.9}
+.tag{background:#a58cf013;letter-spacing:.2px;box-shadow:inset 0 0 12px #bba7ff16}
+.panel{background:linear-gradient(145deg,#222948f5,#191d39f5);border:1px solid #786caa75;box-shadow:0 20px 60px #0507169c, inset 0 1px #ffffff14;backdrop-filter:blur(10px)}
+.panel h2{color:#f6d6ff}.steps span{height:9px;background:#3c4266}.steps .on{background:linear-gradient(90deg,#72dec6,#ad89ff,#f3a2d4);box-shadow:0 0 14px #a589ff8a}
+button{box-shadow:0 6px 16px #080c2580}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #7debd3;outline-offset:3px}
+pre{border-right:4px solid #6adac3;box-shadow:inset 0 0 28px #0003}.evidence{border-right:3px solid #a88df4}
+.mystery-art{width:min(240px,55vw);height:220px;position:relative;display:grid;place-items:center;filter:drop-shadow(0 10px 22px #060a1d)}
+.mystery-art svg{width:100%;height:100%;overflow:visible;animation:detective-search 4.5s ease-in-out infinite;transform-origin:50% 55%}
+.mystery-art .lens-glow{animation:lens-pulse 2.2s ease-in-out infinite}
+.mystery-art .sparkle{animation:twinkle 2s ease-in-out infinite}.mystery-art .sparkle.two{animation-delay:1s}
+@keyframes detective-search{0%,100%{transform:translate(-10px,0) rotate(-12deg)}50%{transform:translate(12px,-10px) rotate(12deg)}}
+@keyframes lens-pulse{0%,100%{opacity:.22}50%{opacity:.85}}@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+.mystery-label{color:#a9f3df;font-size:12px;font-weight:bold;letter-spacing:2px;text-align:center;margin-top:-15px}
+.hero{gap:30px}.hero>div:last-child{flex:1;min-width:250px}.case-stamp{display:inline-block;padding:5px 12px;border:1px dashed #bca4ff;border-radius:8px;color:#d9c5ff;transform:rotate(-3deg);margin-bottom:10px}
+.small{line-height:1.9}a{color:#aef1df}
+@media(max-width:600px){header{padding-top:22px}.mystery-art{height:155px;width:170px}.hero{gap:5px}.actions button{flex:1 1 180px}}
+@media(prefers-reduced-motion:reduce){.mystery-art svg,.mystery-art .lens-glow,.mystery-art .sparkle{animation:none}}
+</style></head><body><div class="cert"><div class="gold">🏆</div><h1>شهادة تميز في التحقيق البرمجي</h1><p>تُمنح هذه الشهادة للطالبة المبدعة</p><h2>${safe}</h2><p>تقديرًا لمشاركتها في محاكاة <b>محققات الأخطاء البرمجية</b><br>واكتشاف الأخطاء اللغوية والمنطقية وأخطاء وقت التشغيل.</p><p>نتيجة التحقيق: <b>${score} من 3</b></p><div class="foot"><span>المعلمة: رشا عبد السلام التايه</span><span>التاريخ: ${date}</span></div></div></body></html>`;
+const w=window.open("","_blank");if(!w){alert("اسمحي بالنوافذ المنبثقة لإصدار الشهادة.");return}w.document.open();w.document.write(doc);w.document.close();w.focus();setTimeout(()=>w.print(),500);
+}
+function emailTeacher(){
+const txt=report();if(!txt)return;
+const subject=encodeURIComponent("شهادة وتقرير محققات الأخطاء البرمجية - "+name);
+const body=encodeURIComponent(txt+"\n\nأرفقت شهادة مشاركتي بصيغة PDF.");
+alert("سيُفتح تطبيق البريد برسالة موجهة إلى rasha.tayeh92@gmail.com. احفظي الشهادة أولًا بصيغة PDF، ثم أرفقيها يدويًا قبل الضغط على إرسال. هذا الموقع لا يرسل الملفات تلقائيًا.");window.location.href="mailto:rasha.tayeh92@gmail.com?subject="+subject+"&body="+body;
+}
+function newStudent(){if(!confirm("هل تريدين بدء تحقيق جديد لطالبة أخرى؟ ستُمسح إجابات الطالبة الحالية من الصفحة."))return;reset()}
+function reset(){stage=-1;document.getElementById("topStudent").value="";chosen=[null,null,null];notes=["","",""];name="";reflection="";render()}render();
+</script></body></html>
