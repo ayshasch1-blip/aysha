@@ -1,7 +1,365 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>رحلة من البيانات إلى المعرفة</title><style>
-:root{--wine:#782044;--deep:#47152e;--pink:#f8dbe7;--gold:#d4a34f;--paper:#fffafc}*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at top left,#f9d5e5,transparent 40%),linear-gradient(135deg,#fff7fa,#f5e7ee);color:#3b2331;min-height:100vh}header{background:linear-gradient(110deg,#4b1731,#8b2853);color:white;text-align:center;padding:35px 16px 42px;border-radius:0 0 35px 35px;box-shadow:0 9px 25px #6b244333}header .eyebrow{letter-spacing:1px;color:#ffe5c2;font-size:14px}h1{font-size:clamp(26px,5vw,42px);margin:14px 0}header p{margin:0;color:#f9dce8}.wrap{max-width:940px;margin:-22px auto 60px;padding:0 17px}.panel{background:white;border:1px solid #f2d7e3;border-radius:22px;padding:27px;margin-bottom:20px;box-shadow:0 8px 25px #65213c13}.center{text-align:center}h2{color:var(--wine);font-size:23px;margin:0 0 18px}.muted{color:#806576;line-height:1.9}.row{display:flex;gap:12px;flex-wrap:wrap}.row>*{flex:1;min-width:180px}input,select{width:100%;border:2px solid #edd2dd;border-radius:12px;padding:13px;font-size:16px;background:#fff}label{display:block;font-weight:bold;margin-bottom:8px}button{cursor:pointer;border:0;border-radius:13px;padding:13px 22px;font-family:inherit;font-size:16px;font-weight:bold;transition:.2s}button:hover{transform:translateY(-2px)}.primary{background:var(--wine);color:#fff}.secondary{background:#f8e4ec;color:var(--deep)}.gold{background:#b78639;color:white}.hidden{display:none!important}.concepts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.concept{padding:19px 14px;border-radius:17px;background:#fff5f9;border:1px solid #efd4df;text-align:center;line-height:1.9}.concept b{font-size:20px;color:var(--wine)}.concept .emoji{font-size:36px;display:block}.question{border:1px solid #f0d8e1;border-radius:17px;padding:18px;margin:15px 0;background:#fffafb}.question h3{font-size:17px;margin:0 0 13px;line-height:1.9}.options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.option{background:white;color:#51243b;border:2px solid #ebcfda;text-align:right;font-weight:normal}.option.selected{border-color:var(--wine);background:#f9e3ed}.option.correct{border-color:#27875e;background:#e8f8ef}.option.wrong{border-color:#c03956;background:#ffedf0}.option:disabled{cursor:default}.feedback{margin-top:12px;font-weight:bold;min-height:20px}.good{color:#237b55}.bad{color:#af3151}.progress{height:12px;background:#f2dbe5;border-radius:50px;overflow:hidden;margin:18px 0}.progress>div{height:100%;background:linear-gradient(90deg,#9c3a67,#d5a454);width:0%;transition:width .3s}.badge{display:inline-block;padding:7px 13px;border-radius:20px;background:#f9e6ee;color:var(--wine);font-weight:bold}.certificate{border:8px double #c99a4c;outline:2px solid #e9c991;outline-offset:-17px;background:#fffdf8;padding:45px 22px;text-align:center;position:relative;overflow:hidden}.certificate:before,.certificate:after{content:'✦';position:absolute;font-size:80px;color:#f0dfb7;top:8px}.certificate:before{right:20px}.certificate:after{left:20px}.certificate h2{font-size:32px}.cert-name{font-size:clamp(24px,5vw,37px);color:#7b2449;font-weight:bold;border-bottom:2px solid #d6b16e;display:inline-block;padding:8px 35px;margin:15px auto}.certificate p{line-height:2;font-size:18px}.seal{font-size:50px}.cert-footer{display:flex;justify-content:space-around;gap:20px;margin-top:38px;font-size:14px}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}footer{text-align:center;color:#906d80;font-size:13px;padding:12px}.spark{animation:pulse 1.8s infinite}@keyframes pulse{50%{transform:scale(1.12)}}@media(max-width:650px){.concepts,.options{grid-template-columns:1fr}.panel{padding:19px}.certificate{padding:35px 12px}.cert-footer{flex-direction:column;gap:5px}}@media print{body{background:white}header,.wrap>.panel:not(#certificatePanel),footer,.print-actions{display:none!important}.wrap{margin:0;padding:0;max-width:none}#certificatePanel{display:block!important;border:0;box-shadow:none;margin:0;padding:0}.certificate{min-height:90vh;display:flex;flex-direction:column;justify-content:center} @page{size:A4 landscape;margin:12mm}}
-</style></head><body><header><div class="eyebrow">مادة الحوسبة وتكنولوجيا المعلومات | الصف الحادي عشر</div><h1>🔍 رحلة من البيانات إلى المعرفة</h1><p>اكتشفي الفرق، حلّلي الأمثلة، واحصلي على شهادة التميز ✨</p></header><main class="wrap"><section class="panel" id="welcome"><h2>🌸 أهلًا بكِ أيتها الباحثة الذكية!</h2><p class="muted">أدخلي بياناتكِ أولًا، ثم انطلقي في رحلة تعليمية ممتعة. أكملي التحديات لتحصلي على شهادة شكر باسمكِ.</p><div class="row"><div><label for="student">اسم الطالبة</label><input id="student" placeholder="اكتبي اسمكِ الكامل" maxlength="65"></div><div><label for="classroom">الصف / الشعبة</label><input id="classroom" placeholder="مثال: 11 / 2" maxlength="30"></div></div><p id="startError" class="bad" role="alert"></p><button class="primary" id="start">ابدئي الرحلة 🚀</button></section><section class="panel hidden" id="lesson"><div class="topline"><h2>📚 محطة الفهم</h2><span class="badge" id="greeting"></span></div><div class="concepts"><div class="concept"><span class="emoji">🔢</span><b>البيانات</b><div>حقائق وأرقام خام لم تُفسَّر بعد.</div><small>مثال: 28، 30، 32</small></div><div class="concept"><span class="emoji">📊</span><b>المعلومات</b><div>بيانات نُظِّمت أو عولجت فأصبح لها معنى.</div><small>مثال: درجات الحرارة خلال ثلاثة أيام: 28، 30، 32 درجة مئوية.</small></div><div class="concept"><span class="emoji">💡</span><b>المعرفة</b><div>فهم المعلومات واستخدامها لاتخاذ قرار.</div><small>مثال: الحرارة ترتفع؛ لذا سأختار ملابس خفيفة.</small></div></div><p class="muted center">تذكري: <b>بيانات ← معالجة وتنظيم ← معلومات ← فهم وتطبيق ← معرفة</b></p><div class="center"><button class="primary" id="toQuiz">انتقلي إلى التحديات 🎯</button></div></section><section class="panel hidden" id="quiz"><div class="topline"><h2>🎯 تحدي المحققات الرقميات</h2><span class="badge" id="score">النتيجة: 0 / 6</span></div><p class="muted">اختاري الإجابة الصحيحة لكل موقف. يمكنكِ المحاولة مرة أخرى عند الخطأ.</p><div class="progress"><div id="bar"></div></div><div id="questions"></div><div class="center hidden" id="completed"><h2 class="spark">🎉 أحسنتِ! أتممتِ جميع التحديات</h2><p>أظهرتِ فهمًا رائعًا للبيانات والمعلومات والمعرفة.</p><button class="gold" id="showCert">استلمي شهادة الشكر 🏅</button></div></section><section class="panel hidden" id="certificatePanel"><div class="certificate" id="certificate"><div class="seal">🏅</div><p style="color:#987037;margin:4px">مادة الحوسبة وتكنولوجيا المعلومات</p><h2>شهادة شكر وتقدير</h2><p>تُمنح هذه الشهادة إلى الطالبة المتميزة</p><div class="cert-name" id="certName"></div><p>تقديرًا لمشاركتها الفاعلة وإتمامها بنجاح النشاط التفاعلي</p><h3 style="color:#7b2449">«رحلة من البيانات إلى المعرفة»</h3><p>مع أطيب الأمنيات بدوام النجاح والتفوق 🌷</p><div class="cert-footer"><div id="certClass"></div><div>المعلمة: غدير نذير الكوفحي</div><div id="certDate"></div></div></div><div class="row print-actions" style="margin-top:22px"><button class="primary" onclick="window.print()">🖨️ طباعة الشهادة / حفظ PDF</button><button class="secondary" id="restart">🔄 نشاط جديد</button></div></section></main><footer>صُمم بحب لطالبات الصف الحادي عشر 💜</footer><script>
-const questions=[{q:'ظهرت أمامكِ الأرقام: 15، 20، 25 دون أي وصف. ماذا تمثل؟',a:['بيانات','معلومات','معرفة'],correct:0,why:'لأنها أرقام خام دون سياق أو تفسير.'},{q:'رتبت المعلمة درجات الطالبات في جدول يوضح اسم كل طالبة ودرجتها. ماذا أصبح لديها؟',a:['بيانات غير منظمة','معلومات','معرفة'],correct:1,why:'لأن تنظيم البيانات وربطها بأسماء الطالبات أعطاها معنى.'},{q:'بعد مراجعة نتائج الاختبار، قررت المعلمة تقديم مراجعة إضافية لمهارة ضعيفة. ماذا استخدمت؟',a:['البيانات فقط','المعلومات فقط','المعرفة'],correct:2,why:'لأنها فهمت النتائج واستخدمتها لاتخاذ قرار مناسب.'},{q:'أي ترتيب يصف التحول الصحيح؟',a:['معرفة ← بيانات ← معلومات','بيانات ← معلومات ← معرفة','معلومات ← معرفة ← بيانات'],correct:1,why:'تُعالج البيانات لتصبح معلومات، ثم تُفهم وتُطبق لتصبح معرفة.'},{q:'يعرض تطبيق الطقس: «درجة الحرارة اليوم 39° مئوية». ما هذا؟',a:['معلومات','معرفة','بيانات بلا معنى'],correct:0,why:'لأن الرقم مرتبط بسياق واضح وهو درجة حرارة اليوم.'},{q:'قرأتِ توقعات الطقس وفهمتِ أن الجو حار، فقررتِ شرب الماء وحمل مظلة. ماذا يمثل القرار؟',a:['بيانات','معرفة','أرقام خام'],correct:1,why:'لأنكِ استخدمتِ المعلومات والفهم لاتخاذ إجراء.'}];
-let index=0,points=0,student='',cls='';const $=id=>document.getElementById(id);function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}function sound(ok){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const ctx=new C();[0,1].forEach((n)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=ok?(n?880:660):(n?310:260);g.gain.setValueAtTime(.0001,ctx.currentTime+n*.12);g.gain.exponentialRampToValueAtTime(.085,ctx.currentTime+n*.12+.02);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+n*.12+.16);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime+n*.12);o.stop(ctx.currentTime+n*.12+.17)});setTimeout(()=>ctx.close(),600)}catch(e){}}
-$('start').onclick=()=>{student=$('student').value.trim();cls=$('classroom').value.trim();if(!student||!cls){$('startError').textContent='يرجى إدخال اسم الطالبة والصف قبل البدء.';return}$('startError').textContent='';hide('welcome');show('lesson');$('greeting').textContent='مرحبًا '+student+' 🌷';window.scrollTo({top:0,behavior:'smooth'})};$('toQuiz').onclick=()=>{hide('lesson');show('quiz');render();window.scrollTo({top:0,behavior:'smooth'})};function render(){const holder=$('questions');holder.replaceChildren();$('score').textContent=`النتيجة: ${points} / ${questions.length}`;$('bar').style.width=(points/questions.length*100)+'%';if(index>=questions.length){show('completed');return}const item=questions[index],box=document.createElement('div');box.className='question';const h=document.createElement('h3');h.textContent=`السؤال ${index+1} من ${questions.length}: ${item.q}`;box.appendChild(h);const opts=document.createElement('div');opts.className='options';const feedback=document.createElement('div');feedback.className='feedback';item.a.forEach((ans,i)=>{const btn=document.createElement('button');btn.className='option';btn.textContent=ans;btn.onclick=()=>{if(box.dataset.done)return;if(i===item.correct){box.dataset.done='yes';btn.classList.add('correct');feedback.className='feedback good';feedback.textContent='✓ إجابة صحيحة! '+item.why;sound(true);[...opts.children].forEach(b=>b.disabled=true);points++;$('score').textContent=`النتيجة: ${points} / ${questions.length}`;$('bar').style.width=(points/questions.length*100)+'%';const next=document.createElement('button');next.className='primary';next.style.marginTop='14px';next.textContent=index===questions.length-1?'إتمام التحدي ✨':'السؤال التالي ←';next.onclick=()=>{index++;render()};box.appendChild(next)}else{btn.classList.add('wrong');feedback.className='feedback bad';feedback.textContent='حاولي مرة أخرى، فكري في الفرق بين الحقائق والفهم والتطبيق.';sound(false);setTimeout(()=>btn.classList.remove('wrong'),700)}};opts.appendChild(btn)});box.append(opts,feedback);holder.appendChild(box)}$('showCert').onclick=()=>{hide('quiz');show('certificatePanel');$('certName').textContent=student;$('certClass').textContent='الصف: '+cls;$('certDate').textContent='التاريخ: '+new Intl.DateTimeFormat('ar-QA',{dateStyle:'long'}).format(new Date());window.scrollTo({top:0,behavior:'smooth'});sound(true)};$('restart').onclick=()=>{index=0;points=0;student='';cls='';$('student').value='';$('classroom').value='';hide('certificatePanel');hide('completed');show('welcome');window.scrollTo({top:0,behavior:'smooth'})};
-</script></body></html>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>ورقة عمل البصمة الرقمية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: A4-style worksheet column; crimson school header, rose lesson card, instruction line, 4-row classification table with two option columns under one heading; stacks on phones */
+:root {
+  --bg: #ffffff;
+  --ink: #3b2a32;
+  --muted: #8d7b84;
+  --crimson: #b0305b;
+  --crimson-2: #cf4f78;
+  --rose: #fdeaf0;
+  --rose-line: #f2bccd;
+  --card: #ffffff;
+  --gold: #f0bf8a;
+  --gold-ink: #7a4a14;
+  --ok-bg: #e2f5e9;
+  --ok-ink: #1d7544;
+  --bad-bg: #fde4e4;
+  --bad-ink: #a3262e;
+  --font: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1418;
+    --ink: #f4e7ec;
+    --muted: #b5a0aa;
+    --crimson: #f08aac;
+    --crimson-2: #cf4f78;
+    --rose: #2e1b24;
+    --rose-line: #6a3347;
+    --card: #251a20;
+    --gold: #a9753f;
+    --gold-ink: #ffe2c0;
+    --ok-bg: #173325;
+    --ok-ink: #7fdba5;
+    --bad-bg: #3b1a1d;
+    --bad-ink: #ff9ea4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c1418;
+  --ink: #f4e7ec;
+  --muted: #b5a0aa;
+  --crimson: #f08aac;
+  --crimson-2: #cf4f78;
+  --rose: #2e1b24;
+  --rose-line: #6a3347;
+  --card: #251a20;
+  --gold: #a9753f;
+  --gold-ink: #ffe2c0;
+  --ok-bg: #173325;
+  --ok-ink: #7fdba5;
+  --bad-bg: #3b1a1d;
+  --bad-ink: #ff9ea4;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 20px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.sheet { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: 14px; }
+
+.school { text-align: center; color: var(--crimson); font-weight: 800; font-size: 1.15rem; margin: 0; }
+
+/* lesson card */
+.lesson {
+  background: var(--rose);
+  border: 2.5px solid var(--crimson);
+  border-radius: 22px;
+  padding: 18px 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.lesson-icon {
+  flex: none; width: 66px; height: 66px; border-radius: 50%;
+  background: var(--card); border: 2px solid var(--rose-line);
+  display: grid; place-items: center;
+}
+.lesson-icon svg { width: 38px; height: 38px; }
+.lesson-body { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.lesson h1 { margin: 0; font-size: 1.9rem; line-height: 1.2; font-weight: 800; color: var(--crimson); text-wrap: balance; }
+.lesson .sub { margin: 0; color: var(--muted); font-size: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--card); border: 1.5px solid var(--rose-line);
+  border-radius: 999px; padding: 3px 14px; font-size: .92rem; font-weight: 500;
+}
+.chip svg { width: 18px; height: 18px; flex: none; }
+
+/* info boxes */
+.info { display: grid; grid-template-columns: 1fr 1.6fr; gap: 12px; }
+.box { background: var(--card); border: 1.5px solid var(--rose-line); border-radius: 14px; padding: 10px 14px; min-width: 0; }
+.box label { font-weight: 500; display: block; }
+.box input {
+  width: 100%; font: inherit; color: inherit; background: transparent;
+  border: 0; border-bottom: 2px dotted var(--muted);
+  padding: 2px 2px 4px; margin-top: 2px; border-radius: 0;
+}
+.box input:focus-visible { outline: 2px solid var(--crimson-2); outline-offset: 3px; border-bottom-color: transparent; }
+
+.instr { margin: 0; font-weight: 700; color: var(--crimson); font-size: 1.05rem; text-wrap: pretty; }
+
+/* table */
+.table { border: 2.5px solid var(--crimson); border-radius: 20px; overflow: hidden; background: var(--card); }
+.row { display: grid; grid-template-columns: 54px minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr); }
+.head {
+  background: linear-gradient(180deg, var(--crimson-2), var(--crimson));
+  color: #fff; font-weight: 700;
+}
+.head > div { padding: 10px 10px; text-align: center; display: grid; place-items: center; }
+.h-sit { grid-column: 1 / 3; grid-row: 1 / 3; font-size: 1.15rem; }
+.h-title { grid-column: 3 / 5; grid-row: 1; font-size: 1.1rem; border-bottom: 1.5px solid rgba(255,255,255,.45); }
+.h-opt { grid-row: 2; font-size: .95rem; line-height: 1.35; }
+.h-opt.a { grid-column: 3; }
+.h-opt.b { grid-column: 4; border-inline-start: 1.5px solid rgba(255,255,255,.45); }
+
+.body { background: var(--rose); }
+.body > div { border-top: 1.5px solid var(--rose-line); padding: 14px 12px; min-width: 0; }
+.body > div + div { border-inline-start: 1.5px solid var(--rose-line); }
+.num { display: grid; place-items: center; align-content: center; }
+.num span {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--gold); color: var(--gold-ink);
+  display: grid; place-items: center; font-weight: 800;
+}
+.situation { display: flex; flex-direction: column; justify-content: center; gap: 8px; font-size: 1.05rem; }
+.situation p { margin: 0; text-wrap: pretty; }
+.fb { margin: 0 !important; border-radius: 10px; padding: 7px 10px; font-size: .92rem; font-weight: 500; }
+.fb[hidden] { display: none; }
+.fb.ok { background: var(--ok-bg); color: var(--ok-ink); }
+.fb.bad { background: var(--bad-bg); color: var(--bad-ink); }
+
+.choice { display: grid; place-items: center; }
+.pick {
+  font: inherit; color: var(--crimson);
+  background: var(--card);
+  border: 2px solid var(--rose-line);
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 10px;
+  padding: 0;
+  transition: background .15s, border-color .15s;
+}
+.pick:hover { border-color: var(--crimson-2); }
+.mark {
+  width: 46px; height: 46px; flex: none;
+  display: grid; place-items: center;
+  font-size: 1.7rem; font-weight: 800; color: transparent; line-height: 1;
+}
+.pick[aria-pressed="true"] { background: var(--crimson); border-color: var(--crimson); }
+.pick[aria-pressed="true"] .mark { color: #fff; }
+.lbl { display: none; }
+button:focus-visible { outline: 3px solid var(--crimson-2); outline-offset: 2px; }
+
+.hint-btn {
+  align-self: flex-start;
+  font: inherit; font-size: .88rem; font-weight: 700;
+  color: var(--gold-ink); background: var(--card);
+  border: 1.5px dashed var(--gold); border-radius: 999px;
+  padding: 2px 12px; cursor: pointer;
+}
+.hint-btn:hover { background: var(--rose); }
+.hint-text {
+  margin: 0 !important; font-size: .95rem; color: var(--gold-ink);
+  background: var(--card); border: 1.5px dashed var(--gold);
+  border-radius: 10px; padding: 6px 10px;
+}
+
+/* actions */
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.btn { font: inherit; font-weight: 700; border-radius: 14px; padding: 10px 22px; cursor: pointer; border: 2px solid var(--crimson); }
+.btn.primary { background: var(--crimson); color: #fff; }
+.btn.ghost { background: var(--card); color: var(--crimson); }
+.score { margin: 0; font-weight: 700; color: var(--crimson); }
+
+@media (max-width: 640px) {
+  .lesson { padding: 14px; gap: 12px; }
+  .lesson-icon { width: 54px; height: 54px; }
+  .lesson h1 { font-size: 1.5rem; }
+  .info { grid-template-columns: 1fr; }
+  .head { display: block; }
+  .h-sit, .h-opt { display: none; }
+  .h-title { border-bottom: 0; }
+  .row.body { grid-template-columns: 44px minmax(0, 1fr); }
+  .body > div { border-inline-start: 0 !important; border-top: 0; padding: 6px 12px; }
+  .body > .num { grid-row: 1 / span 3; padding-top: 14px; align-content: start; }
+  .body > .situation { padding-top: 14px; }
+  .body > .choice { grid-column: 2; place-items: stretch; }
+  .body > .choice:last-child { padding-bottom: 14px; }
+  .row.body { border-top: 1.5px solid var(--rose-line); }
+  #rows .row.body:first-child { border-top: 0; }
+  .pick { width: 100%; text-align: start; }
+  .lbl { display: block; font-weight: 700; font-size: .95rem; line-height: 1.4; padding-inline-end: 10px; }
+  .mark { width: 42px; height: 42px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main class="sheet">
+  <h2 class="school">مدرسة عائشة بنت أبي بكر الثانوية للبنات</h2>
+
+  <section class="lesson" aria-label="بيانات الدرس">
+    <div class="lesson-icon" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#cf4f78" stroke-width="3" stroke-linecap="round">
+        <path d="M8 30V19a12 12 0 0 1 24 0v11"/>
+        <path d="M14 33V19a6 6 0 0 1 12 0v13"/>
+        <path d="M20 33V20"/>
+      </svg>
+    </div>
+    <div class="lesson-body">
+      <h1>درس: البصمة الرقمية</h1>
+      <p class="sub">من الذي يعرف أين مرّرنا على الإنترنت؟ 🔍 كوني محققة!</p>
+      <div class="chips">
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#cf4f78" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 19c0-3.2 2.7-5 6-5s6 1.800 6 5M15 14.500c3 0 6 1.200 6 4.500"/></svg>
+          نشاط جماعي
+        </span>
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#cf4f78" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.500 2M9.500 3h5"/></svg>
+          الوقت المحدد: 5 دقائق
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="box"><label for="group">اسم المجموعة:</label><input id="group" type="text" autocomplete="off" placeholder="اكتبي اسم مجموعتكن"></div>
+    <div class="box"><strong style="font-weight:500">المادة:</strong> الحوسبة وتكنولوجيا المعلومات</div>
+  </section>
+
+  <p class="instr">عزيزتي الطالبة، اقرئي المواقف الآتية، ثم صنّفي كل موقف في العمود المناسب.</p>
+
+  <section class="table" aria-label="جدول تصنيف المواقف">
+    <div class="row head">
+      <div class="h-sit">الموقف</div>
+      <div class="h-title">كيف تُترك البصمة الرقمية؟</div>
+      <div class="h-opt a">أترك أثرًا بإرادتي</div>
+      <div class="h-opt b">يجمع الموقع معلومات عني دون أن أنتبه</div>
+    </div>
+    <div id="rows"></div>
+  </section>
+
+  <div class="actions">
+    <button class="btn primary" id="check" type="button">تحقّقي من إجاباتي</button>
+    <button class="btn ghost" id="reset" type="button">ابدئي من جديد</button>
+    <p class="score" id="score" role="status" aria-live="polite"></p>
+  </div>
+</main>
+
+<script>
+(function () {
+  var OPT = { will: "أترك أثرًا بإرادتي", unaware: "يجمع الموقع معلومات عني دون أن أنتبه" };
+  var items = [
+    { emoji: "🕒", text: "دخلت ريم موقعًا إلكترونيًا لتقرأ مقالًا، فحفظ الموقع وقت دخولها وتاريخه، وتتبّع سجل تصفحها دون علمها.", type: "unaware",
+      why: "الموقع سجّل معلومات عن وقت التصفح وتاريخه دون علمها أو قصدها." },
+    { emoji: "👍", text: "شاهدت سارة فيديو أعجبها على أحد مواقع التواصل، فضغطت زر «إعجاب» وكتبت تعليقًا تشكر فيه صاحبة الفيديو.", type: "will",
+      why: "سارة تعلم بما تفعله، وضغطت الإعجاب وكتبت التعليق بإرادتها." },
+    { emoji: "📱", text: "تصفحت هناء عدة مواقع من جهازها، فعيّن أحد المواقع رقمًا خاصًا بجهازها وتتبّع كل ما تتصفحه.", type: "unaware",
+      why: "التتبّع تم دون علمها، فلم تقصد ترك هذه المعلومات." },
+    { emoji: "🔁", text: "أعجبها منشور عن مسابقة المدرسة، فضغطت نور على زر «مشاركة» لتنشره لصديقاتها.", type: "will",
+      why: "نور تعلم أنها تنشر المنشور، وقامت بالمشاركة بإرادتها." }
+  ];
+  var hints = [
+    "فكّري: هل كانت ريم تعلم أن الموقع يسجّل وقت دخولها؟",
+    "فكّري: من الذي ضغط الزر وكتب التعليق؟",
+    "فكّري: هل طلبت هناء من الموقع أن يعيّن رقمًا لجهازها؟",
+    "فكّري: من الذي قرّر نشر المنشور لصديقاتها؟"
+  ];
+  var state = items.map(function () { return { pick: null }; });
+  var rows = document.getElementById("rows");
+
+  function choice(i, v) {
+    return '<div class="choice"><button type="button" class="pick" id="b' + i + v + '" data-v="' + v +
+      '" aria-pressed="false" aria-label="الموقف ' + (i + 1) + ': ' + OPT[v] + '">' +
+      '<span class="mark" aria-hidden="true">✓</span><span class="lbl">' + OPT[v] + '</span></button></div>';
+  }
+
+  items.forEach(function (it, i) {
+    var r = document.createElement("div");
+    r.className = "row body";
+    r.innerHTML =
+      '<div class="num"><span>' + (i + 1) + '</span></div>' +
+      '<div class="situation"><p>' + it.emoji + ' ' + it.text + '</p>' +
+        '<button type="button" class="hint-btn" id="h' + i + '" aria-expanded="false" aria-controls="ht' + i + '">💡 تلميح</button>' +
+        '<p class="hint-text" id="ht' + i + '" hidden>' + hints[i] + '</p>' +
+        '<p class="fb" id="f' + i + '" hidden></p></div>' +
+      choice(i, "will") + choice(i, "unaware");
+    rows.appendChild(r);
+  });
+
+  function clearFb(i) {
+    var f = document.getElementById("f" + i);
+    f.hidden = true; f.className = "fb"; f.textContent = "";
+  }
+
+  rows.addEventListener("click", function (e) {
+    var h = e.target.closest(".hint-btn");
+    if (h) {
+      var t = document.getElementById("ht" + h.id.slice(1));
+      t.hidden = !t.hidden;
+      h.setAttribute("aria-expanded", String(!t.hidden));
+      h.textContent = t.hidden ? "💡 تلميح" : "💡 إخفاء التلميح";
+      return;
+    }
+    var b = e.target.closest("button[data-v]");
+    if (!b) return;
+    var i = parseInt(b.id.slice(1), 10);
+    state[i].pick = b.dataset.v;
+    ["will", "unaware"].forEach(function (v) {
+      document.getElementById("b" + i + v).setAttribute("aria-pressed", String(v === state[i].pick));
+    });
+    clearFb(i);
+    document.getElementById("score").textContent = "";
+  });
+
+  document.getElementById("check").addEventListener("click", function () {
+    var right = 0;
+    items.forEach(function (it, i) {
+      var f = document.getElementById("f" + i);
+      f.hidden = false;
+      if (!state[i].pick) {
+        f.className = "fb bad";
+        f.textContent = "اختاري العمود المناسب لهذا الموقف.";
+      } else if (state[i].pick === it.type) {
+        right++;
+        f.className = "fb ok";
+        f.textContent = "✓ تصنيف صحيح. " + it.why;
+      } else {
+        f.className = "fb bad";
+        f.textContent = "✗ فكّري مرة أخرى: هل كانت صاحبة الموقف تعلم بما يحدث وتقصده؟";
+      }
+    });
+    var s = document.getElementById("score");
+    s.textContent = right === items.length
+      ? "أحسنتِ! صنّفتِ المواقف الأربعة بشكل صحيح 🎉"
+      : "إجاباتك الصحيحة: " + right + " من " + items.length;
+  });
+
+  document.getElementById("reset").addEventListener("click", function () {
+    items.forEach(function (it, i) {
+      state[i].pick = null;
+      ["will", "unaware"].forEach(function (v) { document.getElementById("b" + i + v).setAttribute("aria-pressed", "false"); });
+      clearFb(i);
+      document.getElementById("ht" + i).hidden = true;
+      var hb = document.getElementById("h" + i);
+      hb.setAttribute("aria-expanded", "false");
+      hb.textContent = "💡 تلميح";
+    });
+    document.getElementById("score").textContent = "";
+  });
+})();
+</script>
+
+</body></html>
