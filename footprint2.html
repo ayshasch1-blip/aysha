@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>رحلة البصمة الرقمية</title>
+<style>
+:root{--mar:#b8365f;--mar2:#d9567f;--pink:#ffd9e4;--pastel:#fff0f4;--peach:#ffd8bd;--apr:#ffb88c;--cream:#fff9f2;--gold:#e9c46a;--tx:#4a2434;--mut:#8a6272;--ok:#2e9e6e;--warn:#e0803a;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic",Arial,sans-serif;font-size:19px;color:var(--tx);min-height:100vh;
+background:radial-gradient(circle at 90% 0,var(--pink),transparent 45%),radial-gradient(circle at 5% 100%,var(--peach),transparent 45%),var(--cream)}
+#app{max-width:920px;margin:auto;padding:16px 16px 40px}
+.card{background:#fff;border-radius:24px;padding:22px;box-shadow:0 8px 26px #b8365f1f;outline:1px solid var(--pink);animation:in .45s;margin-bottom:14px}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.center{text-align:center}
+h1{font-size:38px;margin:.1em 0;background:linear-gradient(90deg,var(--mar),var(--mar2),var(--apr));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:25px;margin:.2em 0;color:var(--mar)}
+.sub{color:var(--mut);line-height:1.8}
+.btn{font:inherit;font-weight:700;color:#fff;border:0;border-radius:15px;padding:10px 24px;cursor:pointer;background:linear-gradient(135deg,var(--mar),var(--mar2));box-shadow:0 4px 14px #b8365f55;transition:.2s;margin:4px}
+.btn:hover{transform:translateY(-2px)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn.gold{background:linear-gradient(135deg,#f0cf7a,var(--apr));color:#5a3300;box-shadow:0 4px 14px #e9c46a77}
+.btn.soft{background:var(--pastel);color:var(--mar);box-shadow:none;border:2px solid var(--pink)}
+input[type=text]{font:inherit;font-size:21px;width:100%;max-width:340px;padding:10px 14px;border-radius:15px;border:2px solid var(--pink);background:var(--pastel);text-align:center;color:var(--tx)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--mar2);box-shadow:0 0 0 4px #d9567f33}
+/* journey */
+.path{position:relative;display:flex;flex-direction:column;gap:26px;padding:6px 0}
+.path:before{content:"";position:absolute;right:46px;top:40px;bottom:40px;border-right:6px dotted var(--apr);z-index:0}
+.st{position:relative;z-index:1;display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:center;background:#fff;border-radius:22px;padding:16px;box-shadow:0 6px 20px #b8365f1f;outline:1px solid var(--pink)}
+.num{position:absolute;top:-10px;right:-6px;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--apr));display:grid;place-items:center;font-weight:800;color:#5a3300;box-shadow:0 3px 8px #e9c46a99;font-size:20px}
+.ic{width:84px;height:84px;filter:drop-shadow(0 8px 8px #b8365f44);animation:fl 3.5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-6px)}}
+.st h3{margin:0 0 4px;font-size:22px;color:var(--mar)}
+.badge{display:inline-block;padding:2px 12px;border-radius:14px;font-size:15px;font-weight:700;margin-bottom:6px}
+.b0{background:#eee;color:#777}.b1{background:#ffe8d6;color:var(--warn)}.b2{background:#dff6ea;color:var(--ok)}
+.arrow{position:absolute;right:35px;bottom:-24px;color:var(--apr);font-size:22px;z-index:2}
+/* quiz */
+.bar{height:12px;border-radius:8px;background:var(--pastel);overflow:hidden;margin:8px 0 14px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--apr),var(--mar2));transition:width .5s}
+.tag{display:inline-block;padding:3px 14px;border-radius:16px;font-size:15px;font-weight:700;background:linear-gradient(135deg,var(--gold),#f6dd9b);color:#6b4a00}
+.q{font-size:22px;line-height:1.9;font-weight:600;margin:10px 0}
+.scn{background:linear-gradient(135deg,var(--pastel),#fff3e8);border-right:6px solid var(--gold);border-radius:14px;padding:12px 16px;line-height:1.9;margin:8px 0}
+.hint{margin:4px 0 8px}
+.hint .btn{padding:6px 16px;font-size:17px;margin:0}
+.hintbox{background:#fff8dc;border-right:6px solid var(--gold);border-radius:14px;padding:10px 14px;line-height:1.9;margin-top:8px;font-size:18px;animation:in .3s}
+.opt{display:flex;gap:10px;align-items:center;padding:12px 14px;margin:8px 0;border-radius:14px;background:var(--pastel);border:2px solid transparent;cursor:pointer;line-height:1.7}
+.opt:hover{border-color:var(--mar2)}.opt.sel{border-color:var(--mar);background:var(--pink)}
+.opt.ok,.row.ok{border-color:var(--ok);background:#dff6ea}.opt.no,.row.no{border-color:var(--warn);background:#ffe8d6}
+.lock{pointer-events:none}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center;padding:10px;margin:8px 0;border-radius:14px;background:var(--pastel);border:2px solid transparent}
+.row select{font:inherit;padding:8px;border-radius:10px;border:2px solid var(--pink);width:100%}
+.tg{display:flex;gap:6px}.tg button{flex:1;font:inherit;padding:8px;border-radius:10px;border:2px solid var(--pink);background:#fff;cursor:pointer}.tg button.on{background:var(--mar);color:#fff;border-color:var(--mar)}
+textarea{font:inherit;width:100%;min-height:150px;padding:12px;border-radius:14px;border:2px solid var(--pink);background:var(--pastel);line-height:1.8;color:var(--tx)}
+.fb{margin-top:12px;padding:12px 16px;border-radius:14px;line-height:1.8}.fb.good{background:#dff6ea;border:2px solid var(--ok)}.fb.bad{background:#fff0e2;border:2px solid var(--warn)}
+.chk{display:flex;gap:8px;align-items:center;padding:5px 0;cursor:pointer}.chk input{width:20px;height:20px;accent-color:var(--mar)}
+.big{font-size:54px;font-weight:800;color:var(--mar)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}.stat{background:linear-gradient(135deg,var(--pastel),#fff3e8);border-radius:16px;padding:12px;border:1px solid var(--pink)}
+.lv{text-align:right;margin:6px 0;line-height:1.8}
+.medal{font-size:84px;animation:fl 3s ease-in-out infinite}
+@media(max-width:600px){h1{font-size:28px}.row{grid-template-columns:1fr}.st{grid-template-columns:70px 1fr}.ic{width:66px;height:66px}.path:before{right:36px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8fb0"/><stop offset="1" stop-color="#b8365f"/></linearGradient>
+<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe0c4"/><stop offset="1" stop-color="#ffb88c"/></linearGradient></defs></svg>
+
+<script>
+/* =====================================================================
+   ★ قسم البيانات — عدّلي الأسئلة والإجابات والتلميحات وأرقام الصفحات هنا فقط ★
+   المصدر: كتاب الدرس الرابع «البصمة الرقمية وأمن الإنترنت» (ص 150–151)
+   لكل سؤال حقل  hint  يظهر تحت السؤال عند الضغط على زر «تلميح».
+   ===================================================================== */
+const DATA = {
+  appTitle: "رحلة البصمة الرقمية",
+  goals: [
+    { id:"g1", title:"مفهوم البصمة الرقمية", pages:"ص 150", icon:"fp", qs:[
+      { lvl:"بسيط", topic:"تذكّر المفهوم", type:"mcq", page:"ص 150",
+        q:"ماذا يُسمّى الأثر الذي يتركه كل عمل أو تصفح نقوم به عبر الإنترنت؟",
+        hint:"فكّري في الأثر الذي يتركه إصبعكِ على الأشياء التي تلمسينها؛ هنا الأثر نفسه، لكن في العالم الرقمي. راجعي ص 150.",
+        options:["البصمة الرقمية","سجلات الخادم","ملفات تعريف الارتباط","عنوان بروتوكول الإنترنت"], answer:0,
+        explain:"كل عمل أو تصفح نقوم به عبر الإنترنت يترك أثرًا يُسمى «البصمة الرقمية»." },
+      { lvl:"متوسط", topic:"إكمال العبارة", type:"mcq", page:"ص 150",
+        q:"أكملي: تُحفظ البصمة الرقمية في شكل ملف يحتوي ______ التي تخص المستخدم والتي يتم جمعها كنتيجة للتصفح والاتصالات والأعمال الأخرى عبر الإنترنت.",
+        hint:"اسألي نفسكِ: ما الذي يُجمع عن المستخدم أثناء التصفح والاتصالات؟ هل هو أجهزة أو إعلانات، أم شيء آخر يمكن حفظه في ملف؟",
+        options:["الأجهزة","البيانات","المواقع","الإعلانات"], answer:1,
+        explain:"تُحفظ البصمة الرقمية في شكل ملف يحتوي البيانات التي تخص المستخدم." },
+      { lvl:"تحدي", topic:"التطبيق", type:"open", page:"ص 150",
+        scenario:"تصفحت لمى عدة مواقع اليوم وزارت مواقع أخرى بالأمس، ثم ظهرت لها إعلانات مخصصة عبر الإنترنت.",
+        q:"في ضوء ما تعلمتِ: هل تركت لمى أثرًا بتصفحها؟ وماذا يُسمى هذا الأثر؟ ولماذا قد تُستخدم تاريخ التصفح والمواقع التي زارتها؟",
+        hint:"أجيبي عن ثلاثة أسئلة صغيرة: (1) هل التصفح يترك أثرًا؟ (2) ما اسم هذا الأثر؟ (3) من المستفيد من هذه البيانات، وماذا يفعل بها؟ راجعي ص 150.",
+        model:["نعم، فكل تصفح نقوم به عبر الإنترنت يترك أثرًا يُسمى «البصمة الرقمية».","قد يتمكن الآخرون من رؤية هذا الأثر، وينطبق ذلك على تاريخ التصفح والمواقع التي نزورها.","الهدف توفير تجربة تصفح أسرع وأكثر كفاءة للمستخدم، أو استهدافه من قبل المعلنين عبر الإعلانات المخصصة."],
+        elements:["ذكرتُ أن التصفح يترك أثرًا يسمى البصمة الرقمية","ذكرتُ أن تاريخ التصفح والمواقع المزارة تدخل ضمن ذلك","ذكرتُ الهدف: تجربة أسرع وأكفأ أو الإعلانات المخصصة"] }
+    ]},
+    { id:"g2", title:"تصنيفات البصمة الرقمية", pages:"ص 150 – ص 151", icon:"split", qs:[
+      { lvl:"بسيط", topic:"تذكّر التصنيفين", type:"mcq", page:"ص 150",
+        q:"إلى أي تصنيفين أساسيين يمكن تصنيف البصمة الرقمية؟",
+        hint:"التصنيف يعتمد على طريقة جمع المعلومات: هل يقدّمها المستخدم بنفسه، أم تُجمع عنه دون أن ينتبه؟ ابحثي عن الخيار الذي يعبّر عن ذلك. راجعي ص 150.",
+        options:["النشطة والمجهولة","السريعة والبطيئة","الخاصة والعامة","القديمة والجديدة"], answer:0,
+        explain:"يمكن تصنيف البصمة الرقمية إلى البصمات الرقمية النشطة والبصمات الرقمية المجهولة، ويعتمد التصنيف على طبيعة عمليات جمع المعلومات الخاصة بالمستخدم." },
+      { lvl:"متوسط", topic:"التصنيف", type:"classify", page:"ص 151", cats:["نشطة","مجهولة"],
+        q:"صنّفي كل مثال من الكتاب: هل هو بصمة رقمية نشطة أم مجهولة؟",
+        hint:"اسألي نفسكِ عن كل مثال: هل أنا من قرّر أن أترك هذه البيانات عمدًا، أم أُخذت مني دون قصد أو دون أن أعرف؟ راجعي ص 151.",
+        items:[{t:"المنشورات على منصات التواصل الاجتماعي",a:0},{t:"التطبيقات والمواقع التي تستخدم تحديد الموقع الجغرافي لتحديد موقع المستخدم",a:1},{t:"النماذج التي تُعبأ عبر الإنترنت، مثل نموذج الاشتراك",a:0},{t:"مواقع الويب التي تثبت ملفات تعريف الارتباط في أجهزتنا دون إخطار المستخدم",a:1}],
+        explain:"النشطة: بيانات نتركها بإرادتنا. المجهولة: نتركها دون قصد أو في بعض الحالات دون أن نعرف ذلك." },
+      { lvl:"تحدي", topic:"التطبيق", type:"open", page:"ص 151",
+        scenario:"وافقت هناء على تثبيت ملفات تعريف الارتباط Cookies على جهازها عند طلب المتصفح ذلك. وفي موقع آخر، ثُبّتت ملفات تعريف الارتباط في جهازها دون إخطارها.",
+        q:"حلّلي الموقف: صنّفي كل تصرف (نشطة أم مجهولة)، وفسّري سبب تصنيفكِ.",
+        hint:"قسّمي الموقف إلى جزأين: في الأول طلب المتصفح موافقتها، وفي الثاني لم يُخطَر أحد. اربطي كل جزء بمعنى «بإرادتها» أو «دون علمها». راجعي ص 151.",
+        model:["موافقة هناء على تثبيت ملفات تعريف الارتباط عند طلب المتصفح = بصمة رقمية نشطة، لأنها تركت البيانات بإرادتها.","تثبيت الموقع ملفات تعريف الارتباط دون إخطار المستخدم = بصمة رقمية مجهولة، لأنها تُترك دون قصد أو دون أن نعرف."],
+        elements:["صنّفتُ الموافقة على Cookies بأنها نشطة","صنّفتُ التثبيت دون إخطار بأنه مجهولة","فسّرتُ التصنيفين (بإرادتها / دون علمها)"] }
+    ]}
+  ],
+  masteryMsgs:{ 3:"مبدعة! أتقنتِ الهدف بنجاح ⭐", 2:"أحسنتِ! اقتربتِ من الإتقان 🌟", 1:"محاولة جميلة، راجعي الصفحة المحددة ثم حاولي مجددًا 🌷", 0:"محاولة جميلة، راجعي الصفحة المحددة ثم حاولي مجددًا 🌷" },
+  levels:{3:"متقن",2:"جيد",1:"يحتاج إلى مراجعة",0:"يحتاج إلى مراجعة"},
+  finalMsgs:[[85,"رائعة! فهمك للبصمة الرقمية واضح ومتميز 🏆"],[60,"أحسنتِ! أنتِ على الطريق الصحيح 🌟"],[0,"بداية جميلة! أعيدي بعض المحطات لتصلي للإتقان 💪"]]
+};
+/* ===================== نهاية قسم البيانات ===================== */
+
+const KEY="dfp_closing_g12_v1", app=document.getElementById('app');
+const fresh=()=>({name:"",g:Object.fromEntries(DATA.goals.map(g=>[g.id,{r:[]}]))});
+let S;try{S=JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){S=fresh()}
+DATA.goals.forEach(g=>{if(!S.g[g.id])S.g[g.id]={r:[]}});
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const G=id=>DATA.goals.find(g=>g.id===id);
+const stat=g=>{const n=S.g[g.id].r.length;return n===0?0:n>=g.qs.length?2:1};
+const score=g=>S.g[g.id].r.reduce((a,x)=>a+x.s,0);
+const shuf=a=>[...a].sort(()=>Math.random()-.5);
+const NUM_AR=["صفر","محطة واحدة","محطتان","ثلاث محطات","أربع محطات"];
+
+const ICONS={
+fp:`<svg class="ic" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="url(#gb)"/><g fill="none" stroke="url(#ga)" stroke-width="5" stroke-linecap="round"><path d="M28 62V46c0-14 10-24 22-24s22 10 22 24"/><path d="M38 70V46c0-8 5-14 12-14s12 6 12 14v10"/><path d="M50 74V46"/><path d="M62 70c2-6 2-10 2-14"/></g></svg>`,
+split:`<svg class="ic" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="url(#gb)"/><rect x="14" y="26" width="34" height="48" rx="8" fill="url(#ga)"/><rect x="52" y="26" width="34" height="48" rx="8" fill="#fff" stroke="url(#ga)" stroke-width="4"/><circle cx="31" cy="44" r="6" fill="#ffe0c4"/><path d="M22 62h18" stroke="#ffe0c4" stroke-width="4" stroke-linecap="round"/><circle cx="69" cy="44" r="6" fill="none" stroke="#b8365f" stroke-width="3" stroke-dasharray="3 3"/><path d="M60 62h18" stroke="#b8365f" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 4"/></svg>`};
+
+function home(){
+ const all=DATA.goals.every(g=>stat(g)===2);
+ app.innerHTML=`<div class="card center"><h1>${DATA.appTitle}</h1><p class="sub">أمامكِ ${NUM_AR[DATA.goals.length]} في رحلتكِ الرقمية، وتقدّمكِ يُحفظ تلقائيًا.</p>
+ <input type="text" id="nm" placeholder="اكتبي اسمكِ هنا" maxlength="40" value="${S.name||''}"></div>
+ <div class="path">${DATA.goals.map((g,i)=>{const s=stat(g),n=S.g[g.id].r.length;
+ return `<div class="st"><div class="num">${i+1}</div>${ICONS[g.icon]}<div><h3>${g.title}</h3>
+ <span class="badge b${s}">${['لم تبدأ','قيد الإنجاز ('+n+' من '+g.qs.length+')','مكتمل ✅ '+score(g)+'/'+g.qs.length][s]}</span><br>
+ ${s===0?`<button class="btn" data-a="go" data-g="${g.id}">ابدئي المحطة</button>`:''}
+ ${s===1?`<button class="btn" data-a="go" data-g="${g.id}">متابعة الحل</button><button class="btn soft" data-a="retry" data-g="${g.id}">إعادة المحاولة</button>`:''}
+ ${s===2?`<button class="btn gold" data-a="res" data-g="${g.id}">عرض النتيجة</button><button class="btn soft" data-a="retry" data-g="${g.id}">إعادة المحاولة</button>`:''}
+ </div>${i<DATA.goals.length-1?'<div class="arrow">▼</div>':''}</div>`}).join('')}</div>
+ ${all?`<div class="card center"><div class="medal">🏅</div><button class="btn gold" data-a="final">بطلة البصمة الرقمية — اعرضي نتيجتي</button></div>`:''}`;
+ document.getElementById('nm').oninput=e=>{S.name=e.target.value.trim();save()};
+ app.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{
+  const id=b.dataset.g,a=b.dataset.a;
+  if(a==='go'){if(!S.name){const n=document.getElementById('nm');n.focus();n.style.borderColor='#e0803a';n.placeholder='اكتبي اسمكِ أولًا 🌸';return}quiz(id)}
+  else if(a==='retry'){S.g[id]={r:[]};save();quiz(id)} else if(a==='res')result(id); else final()});
+}
+
+function quiz(id){
+ const g=G(id),idx=S.g[id].r.length;
+ if(idx>=g.qs.length)return result(id);
+ const q=g.qs[idx];let ans=null,done=false;
+ app.innerHTML=`<div class="card"><button class="btn soft" id="bk">◀ المسار</button><h2>${g.title}</h2>
+ <div class="bar"><i style="width:${idx/g.qs.length*100}%"></i></div><span class="tag">المستوى ${idx+1} • ${q.lvl}</span>
+ ${q.scenario?`<div class="scn">${q.scenario}</div>`:''}<div class="q">${q.q}</div>
+ ${q.hint?`<div class="hint"><button class="btn soft" id="hb">💡 تلميح</button><div class="hintbox" id="ht" style="display:none">${q.hint}</div></div>`:''}
+ <div id="body"></div><div class="center"><button class="btn" id="ck">${q.type==='open'?'أرسلي إجابتي':'تحقّق من إجابتي'}</button></div><div id="fbk"></div></div>`;
+ document.getElementById('bk').onclick=home;
+ const hb=document.getElementById('hb');
+ if(hb)hb.onclick=()=>{const ht=document.getElementById('ht'),open=ht.style.display!=='none';ht.style.display=open?'none':'block';hb.textContent=open?'💡 تلميح':'🙈 إخفاء التلميح'};
+ const body=document.getElementById('body'),fbk=document.getElementById('fbk'),ck=document.getElementById('ck');
+ const T=q.type;
+ if(T==='mcq'){body.innerHTML=q.options.map((o,k)=>`<div class="opt" data-k="${k}">${'أبجد'[k]}. ${o}</div>`).join('');
+  body.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{if(done)return;body.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');ans=+o.dataset.k})}
+ if(T==='classify'){ans=q.items.map(()=>-1);body.innerHTML=q.items.map((it,i)=>`<div class="row" data-i="${i}"><div>${it.t}</div><div class="tg">${q.cats.map((c,k)=>`<button data-k="${k}">${c}</button>`).join('')}</div></div>`).join('');
+  body.querySelectorAll('.row').forEach(r=>r.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(done)return;r.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');ans[+r.dataset.i]=+b.dataset.k}))}
+ if(T==='match'){const rights=shuf(q.pairs.map(p=>p[1]));body.innerHTML=q.pairs.map((p,i)=>`<div class="row" data-i="${i}"><div>${p[0]}</div><select><option value="">اختاري…</option>${rights.map(r=>`<option>${r}</option>`).join('')}</select></div>`).join('')}
+ if(T==='open'){body.innerHTML=`<textarea id="ta" placeholder="اكتبي إجابتكِ هنا…"></textarea>`}
+ function finish(s,html,good){S.g[id].r.push({s});save();done=true;ck.style.display='none';body.classList.add('lock');
+  fbk.innerHTML=`<div class="fb ${good?'good':'bad'}">${html}</div><div class="center" style="margin-top:10px"><button class="btn gold" id="nx">${idx+1<g.qs.length?'المستوى التالي ◀':'عرض نتيجة الهدف 🏁'}</button></div>`;
+  document.getElementById('nx').onclick=()=>quiz(id);fbk.scrollIntoView({behavior:'smooth'})}
+ ck.onclick=()=>{
+  if(done)return;
+  const ref=`<br>📖 للمراجعة: ${q.page}`;
+  if(T==='open'){const ta=document.getElementById('ta');if(ta.value.trim().length<5){ta.style.borderColor='#e0803a';return}
+   ta.disabled=true;ck.style.display='none';
+   fbk.innerHTML=`<div class="fb good"><b>الإجابة النموذجية:</b><ul>${q.model.map(m=>`<li>${m}</li>`).join('')}</ul><b>قيّمي إجابتكِ بنفسكِ (لا يوجد تصحيح آلي للإجابة المكتوبة):</b>${q.elements.map(e=>`<label class="chk"><input type="checkbox"><span>${e}</span></label>`).join('')}<div class="center"><button class="btn gold" id="sv">سجّلي تقييمي</button></div></div>`;
+   document.getElementById('sv').onclick=()=>{const c=fbk.querySelectorAll('input:checked').length,s=c>=Math.ceil(q.elements.length*0.67)?1:0;
+    S.g[id].r.push({s,self:c});save();quiz(id)};return}
+  let ok=false,corr='';
+  if(T==='mcq'){if(ans===null){toast();return}ok=ans===q.answer;corr=q.options[q.answer];
+   body.querySelectorAll('.opt').forEach((o,k)=>{if(k===q.answer)o.classList.add('ok');else if(k===ans)o.classList.add('no')})}
+  if(T==='classify'){if(ans.includes(-1)){toast();return}ok=q.items.every((it,i)=>it.a===ans[i]);corr=q.items.map(it=>`• ${it.t}: ${q.cats[it.a]}`).join('<br>');
+   body.querySelectorAll('.row').forEach((r,i)=>r.classList.add(q.items[i].a===ans[i]?'ok':'no'))}
+  if(T==='match'){const sel=[...body.querySelectorAll('select')];if(sel.some(s=>!s.value)){toast();return}
+   ok=true;sel.forEach((s,i)=>{const g2=s.value===q.pairs[i][1];if(!g2)ok=false;s.closest('.row').classList.add(g2?'ok':'no')});corr=q.pairs.map(p=>`• ${p[0]} ← ${p[1]}`).join('<br>')}
+  finish(ok?1:0,ok?`<b>رائع! إجابة صحيحة 🎉</b><br>${q.explain}${ref}`:`<b>ليست الإجابة الصحيحة. الصحيح:</b><br>${corr}<br>${q.explain}${ref}`,ok);
+ };
+ function toast(){fbk.innerHTML=`<div class="fb bad">أجيبي عن جميع الأجزاء أولًا ✍️</div>`}
+}
+
+function result(id){
+ const g=G(id),r=S.g[id].r,sc=score(g),n=g.qs.length,pct=Math.round(sc/n*100);
+ app.innerHTML=`<div class="card center">${ICONS[g.icon]}<h2>نتيجة الهدف: ${g.title}</h2><p class="sub">الطالبة: <b>${S.name}</b></p><div class="big">${sc} / ${n}</div>
+ <div class="stats"><div class="stat"><b>النسبة المئوية</b><br>${pct}%</div><div class="stat"><b>مستوى الإتقان</b><br>${DATA.levels[sc]}</div><div class="stat"><b>صفحات المراجعة</b><br>${g.pages}</div></div>
+ <p><b>${DATA.masteryMsgs[sc]}</b></p>
+ <div class="lv">${g.qs.map((q,i)=>`<div>${r[i].s?'✅ أتقنتِ':'🔁 تحتاجين مراجعة'} — المستوى ${i+1} (${q.topic})${r[i].s?'':' — راجعي '+q.page}</div>`).join('')}</div>
+ <p class="sub">ملاحظة: نتيجة مستوى التحدي تعتمد على تقييمكِ الذاتي مقارنةً بالإجابة النموذجية.</p>
+ <button class="btn" onclick="home()">العودة للمسار</button><button class="btn soft" id="rt">إعادة المحاولة</button></div>`;
+ document.getElementById('rt').onclick=()=>{S.g[id]={r:[]};save();quiz(id)};
+}
+
+function final(){
+ let tot=0,max=0;DATA.goals.forEach(g=>{tot+=score(g);max+=g.qs.length});const pct=Math.round(tot/max*100),msg=DATA.finalMsgs.find(([m])=>pct>=m)[1];
+ app.innerHTML=`<div class="card center"><div class="medal">🏅</div><h1>بطلة البصمة الرقمية</h1><p class="sub"><b>${S.name}</b></p>
+ <div class="stats">${DATA.goals.map(g=>`<div class="stat"><b>${g.title}</b><br>${score(g)} / ${g.qs.length}</div>`).join('')}</div>
+ <div class="big">${pct}%</div><p>نسبة الإنجاز الكلية (${tot} من ${max})</p><div style="font-size:40px">⭐⭐⭐</div><p><b>${msg}</b></p>
+ <button class="btn" onclick="home()">العودة للمسار</button></div>`;
+}
+home();
+</script>
+</body>
+</html>
